@@ -1,68 +1,35 @@
-import sounddevice as sd
-import numpy as np
-import scipy.io.wavfile as wav
 import speech_recognition as sr
 import tempfile
 import os
-import time
+from pydub import AudioSegment
 
-def record_audio(duration=5, sample_rate=16000):
-    """Record audio from microphone"""
-    print("🎤 Recording... Speak now!")
-    recording = sd.rec(int(duration * sample_rate), 
-                       samplerate=sample_rate, 
-                       channels=1, 
-                       dtype='int16')
-    sd.wait()
-    print("✅ Recording complete!")
-    return recording, sample_rate
-
-def transcribe_audio_from_mic(duration=5):
-    """Record and transcribe in one go"""
-    audio_data, sr_rate = record_audio(duration)
-    
-    # Save to temp file
-    tmp_path = tempfile.mktemp(suffix=".wav")
-    wav.write(tmp_path, sr_rate, audio_data)
-    
-    # Transcribe
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(tmp_path) as source:
-        audio = recognizer.record(source)
-        try:
-            text = recognizer.recognize_google(audio)
-            print(f"📝 Recognized: {text}")
-            return text
-        except sr.UnknownValueError:
-            print("❌ Could not understand audio")
-            return ""
-        except sr.RequestError:
-            print("❌ API request failed")
-            return ""
-        finally:
-            # Wait and delete
-            time.sleep(0.2)
-            try:
-                os.remove(tmp_path)
-            except:
-                pass  # Ignore errors
+# Cloud par microphone available nahi hai
+MIC_AVAILABLE = False
 
 def transcribe_audio_file(audio_file):
-    """Transcribe an existing audio file"""
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(audio_file) as source:
-        audio = recognizer.record(source)
-        try:
+    """Transcribe audio file (supports MP3, WAV, M4A)"""
+    try:
+        # Agar MP3/M4A hai toh WAV mein convert karo
+        if audio_file.endswith('.mp3') or audio_file.endswith('.m4a'):
+            print("🔄 Converting to WAV...")
+            audio = AudioSegment.from_file(audio_file)
+            wav_path = tempfile.mktemp(suffix=".wav")
+            audio.export(wav_path, format="wav")
+            audio_file = wav_path
+        
+        recognizer = sr.Recognizer()
+        with sr.AudioFile(audio_file) as source:
+            audio = recognizer.record(source)
             text = recognizer.recognize_google(audio)
-            print(f"📝 Recognized: {text}")
             return text
-        except sr.UnknownValueError:
-            print("❌ Could not understand audio")
-            return ""
-        except sr.RequestError:
-            print("❌ API request failed")
-            return ""
+    except Exception as e:
+        print(f"Error: {e}")
+        return ""
 
-if __name__ == "__main__":
+def transcribe_audio_from_mic(duration=5):
+    """Microphone feature only works locally"""
+    return "🎤 Microphone feature is only available when running locally."
+
+if _name_ == "_main_":
     result = transcribe_audio_file("voice_1.mp3")
     print("Result:", result)
