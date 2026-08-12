@@ -3,7 +3,6 @@ def map_sentence_to_signs(sentence):
     words = sentence.lower().split()
     
     # ISL grammar: Object-Subject-Verb (OSV)
-    # For now, we just reverse order (basic ISL style)
     isl_style = words[::-1]
     
     sign_map = {
@@ -16,7 +15,11 @@ def map_sentence_to_signs(sentence):
         "food": "🍽️",
         "name": "📛",
         "my": "🤚",
-        "is": "✅"
+        "is": "✅",
+        "yes": "👍",
+        "no": "👎",
+        "bad": "👎",
+        "welcome": "🤗"
     }
     
     signs = []
@@ -25,6 +28,25 @@ def map_sentence_to_signs(sentence):
     
     return signs
 
-# Test
-if __name__ == "__main__":
-    print(map_sentence_to_signs("my name is harsh"))  # ISL style: harsh is name my
+def get_sign_emoji(word):
+    """Return emoji for a single word"""
+    sign_map = {
+        "hello": "👋",
+        "help": "🆘",
+        "please": "🙏",
+        "thank": "🙏",
+        "you": "👉",
+        "water": "💧",
+        "food": "🍽️",
+        "name": "📛",
+        "my": "🤚",
+        "is": "✅",
+        "yes": "👍",
+        "no": "👎",
+        "bad": "👎",
+        "welcome": "🤗"
+    }
+    return sign_map.get(word.lower(), f"❓{word}")
+
+if _name_ == "_main_":
+    print(map_sentence_to_signs("my name is harsh"))
