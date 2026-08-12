@@ -30,6 +30,6 @@ def transcribe_audio_from_mic(duration=5):
     """Microphone feature only works locally"""
     return "🎤 Microphone feature is only available when running locally."
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     result = transcribe_audio_file("voice_1.mp3")
     print("Result:", result)
