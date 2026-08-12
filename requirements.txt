@@ -3,3 +3,4 @@ speechrecognition
 opencv-python
 pydub
 numpy
+mediapipe
