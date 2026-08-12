@@ -161,3 +161,20 @@ else:
 # ==================== FOOTER ====================
 st.markdown("---")
 st.caption("Made with ❤️ using Streamlit")
+if uploaded_file is not None:
+    # Show file info
+    st.success(f"✅ File uploaded: {uploaded_file.name}")
+    st.write(f"📊 File size: {uploaded_file.size} bytes")
+    
+    # 🔥 Naya "Process" Button
+    if st.button("🚀 Process Audio"):
+        with st.spinner("Processing..."):
+            # Save uploaded file temporarily
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmpfile:
+                tmpfile.write(uploaded_file.read())
+                tmp_path = tmpfile.name
+            
+            # Transcribe
+            text = transcribe_audio_file(tmp_path)
+            
+   
