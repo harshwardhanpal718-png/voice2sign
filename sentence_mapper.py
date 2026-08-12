@@ -26,5 +26,5 @@ def map_sentence_to_signs(sentence):
     return signs
 
 # Test
-if _name_ == "_main_":
+if __name__ == "__main__":
     print(map_sentence_to_signs("my name is harsh"))  # ISL style: harsh is name my
