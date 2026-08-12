@@ -48,5 +48,5 @@ def get_sign_emoji(word):
     }
     return sign_map.get(word.lower(), f"❓{word}")
 
-if _name_ == "_main_":
+if __name__== "__main__":
     print(map_sentence_to_signs("my name is harsh"))
