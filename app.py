@@ -87,3 +87,14 @@ else:  # Microphone option
 
 st.markdown("---")
 st.caption("Made with ❤️ using Streamlit")
+from avatar_sign import generate_avatar_sign
+from sentence_mapper import map_sentence_to_signs
+
+# After text processing
+if st.button("🎬 Show 3D Avatar"):
+    avatar_text = " ".join(processed_words)
+    generate_avatar_sign(avatar_text)
+    
+    # Show ISL style sentence
+    isl_signs = map_sentence_to_signs(avatar_text)
+    st.write("🖐️ ISL Style:", " → ".join(isl_signs))
