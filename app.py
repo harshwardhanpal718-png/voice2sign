@@ -50,7 +50,7 @@ if option == "📁 Upload Audio File":
         st.success(f"✅ File uploaded: {uploaded_file.name}")
         st.write(f"📊 File size: {uploaded_file.size} bytes")
         
-        # 🔥 Process Button — SAHI: Yeh 'if uploaded_file' ke ANDAR hai
+        # 🔥 Process Button
         if st.button("🚀 Process Audio"):
             with st.spinner("Processing..."):
                 # Save uploaded file temporarily
@@ -68,7 +68,7 @@ if option == "📁 Upload Audio File":
                     st.success(f"✅ Recognized: *{text}*")
                     st.write(f"📝 Processed Words: {', '.join(words)}")
                     
-                    # ==================== NEW FEATURES ====================
+                    # ==================== FEATURES ====================
                     col1, col2 = st.columns(2)
                     
                     with col1:
@@ -128,7 +128,7 @@ else:
                 st.success(f"✅ Recognized: *{text}*")
                 st.write(f"📝 Processed Words: {', '.join(words)}")
                 
-                # ==================== NEW FEATURES ====================
+                # ==================== FEATURES ====================
                 col1, col2 = st.columns(2)
                 
                 with col1:

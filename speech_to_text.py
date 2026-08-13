@@ -49,5 +49,5 @@ def transcribe_audio_from_mic(duration=5):
     return "Microphone feature is only available when running locally."
 
 if __name__ == "__main__":
-    result = transcribe_audio_file("freesound_community-hello-91045.mp3")
+    result = transcribe_audio_file("hello.wav")
     print("Result:", result)
