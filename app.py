@@ -17,12 +17,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ========== CUSTOM CSS ==========
+# ========== CUSTOM CSS (Purple Galaxy Theme) ==========
 st.markdown("""
 <style>
     /* Global Styles */
     .stApp {
-        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        background: linear-gradient(135deg, #1a0b2e, #3d1f6e, #6c3cb0);
         color: #ffffff;
     }
     
@@ -30,7 +30,7 @@ st.markdown("""
     .main-title {
         font-size: 4rem;
         font-weight: 900;
-        background: linear-gradient(90deg, #f7971e, #ffd200, #f7971e);
+        background: linear-gradient(90deg, #e0aaff, #c77dff, #9d4edd, #7b2cbf);
         background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -66,14 +66,14 @@ st.markdown("""
     
     .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-        border-color: rgba(255, 210, 0, 0.3);
+        box-shadow: 0 12px 40px rgba(157, 78, 221, 0.3);
+        border-color: rgba(157, 78, 221, 0.4);
     }
     
     /* Buttons */
     .stButton > button {
-        background: linear-gradient(90deg, #f7971e, #ffd200);
-        color: #1a1a2e;
+        background: linear-gradient(90deg, #9d4edd, #7b2cbf);
+        color: #ffffff;
         font-weight: 700;
         border-radius: 50px;
         padding: 12px 35px;
@@ -81,13 +81,13 @@ st.markdown("""
         transition: all 0.3s ease;
         font-size: 1.1rem;
         letter-spacing: 0.5px;
-        box-shadow: 0 4px 15px rgba(255, 210, 0, 0.3);
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
     }
     
     .stButton > button:hover {
         transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(255, 210, 0, 0.5);
-        background: linear-gradient(90deg, #ffd200, #f7971e);
+        box-shadow: 0 8px 30px rgba(157, 78, 221, 0.5);
+        background: linear-gradient(90deg, #7b2cbf, #9d4edd);
     }
     
     .stButton > button:active {
@@ -96,7 +96,7 @@ st.markdown("""
     
     /* File Uploader */
     .upload-container {
-        border: 2px dashed rgba(255, 210, 0, 0.3);
+        border: 2px dashed rgba(157, 78, 221, 0.3);
         border-radius: 20px;
         padding: 30px;
         text-align: center;
@@ -105,8 +105,8 @@ st.markdown("""
     }
     
     .upload-container:hover {
-        border-color: #ffd200;
-        background: rgba(255, 210, 0, 0.05);
+        border-color: #9d4edd;
+        background: rgba(157, 78, 221, 0.05);
     }
     
     /* Success/Error/Info Boxes */
@@ -118,33 +118,37 @@ st.markdown("""
     }
     
     .stSuccess {
-        border-left-color: #00d4ff;
+        border-left-color: #9d4edd;
+        color: #e0aaff;
     }
     
     .stError {
         border-left-color: #ff4757;
+        color: #ff6b81;
     }
     
     .stWarning {
         border-left-color: #ffd200;
+        color: #ffd200;
     }
     
     .stInfo {
-        border-left-color: #00d4ff;
+        border-left-color: #7b2cbf;
+        color: #c77dff;
     }
     
     /* Sidebar */
     .css-1d391kg {
-        background: rgba(255,255,255,0.03);
+        background: rgba(26, 11, 46, 0.8);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-right: 1px solid rgba(255,255,255,0.05);
+        border-right: 1px solid rgba(157, 78, 221, 0.2);
     }
     
     .sidebar-title {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #ffd200;
+        color: #e0aaff;
         margin-bottom: 20px;
     }
     
@@ -162,7 +166,7 @@ st.markdown("""
     
     /* Progress Bar */
     .stProgress > div > div {
-        background: linear-gradient(90deg, #f7971e, #ffd200) !important;
+        background: linear-gradient(90deg, #7b2cbf, #9d4edd, #c77dff) !important;
         border-radius: 10px;
     }
     
@@ -172,43 +176,44 @@ st.markdown("""
         padding: 30px;
         color: rgba(255,255,255,0.3);
         font-size: 0.9rem;
-        border-top: 1px solid rgba(255,255,255,0.05);
+        border-top: 1px solid rgba(157, 78, 221, 0.1);
         margin-top: 40px;
     }
     
     .footer a {
-        color: #ffd200;
+        color: #c77dff;
         text-decoration: none;
     }
     
     .footer a:hover {
         text-decoration: underline;
+        color: #e0aaff;
     }
     
-    /* Two column layout for results */
+    /* Feature boxes */
     .feature-box {
         background: rgba(255,255,255,0.03);
         border-radius: 15px;
         padding: 20px;
         margin: 10px 0;
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 1px solid rgba(157, 78, 221, 0.1);
     }
     
     .feature-box h4 {
-        color: #ffd200;
+        color: #c77dff;
         margin-bottom: 15px;
     }
     
     /* Word chips */
     .word-chip {
         display: inline-block;
-        background: rgba(255, 210, 0, 0.15);
-        color: #ffd200;
+        background: rgba(157, 78, 221, 0.2);
+        color: #e0aaff;
         padding: 5px 15px;
         border-radius: 20px;
         margin: 3px;
         font-size: 0.9rem;
-        border: 1px solid rgba(255, 210, 0, 0.1);
+        border: 1px solid rgba(157, 78, 221, 0.2);
     }
     
     /* Animations */
@@ -277,7 +282,6 @@ with st.sidebar:
 if option == "📁 Upload Audio File":
     st.markdown('<div class="card fade-in">', unsafe_allow_html=True)
     
-    # File uploader with custom styling
     st.markdown("### 📂 Upload Your Audio File")
     st.markdown("Supported formats: *MP3, WAV, M4A* (Max: 200MB)")
     
@@ -301,14 +305,11 @@ if option == "📁 Upload Audio File":
         with col3:
             st.metric("📁 Format", uploaded_file.type or "Unknown")
         
-        # Process button
         if st.button("🚀 Process Audio", use_container_width=True):
-            # Progress tracking
             progress_bar = st.progress(0)
             status_text = st.empty()
             
             try:
-                # Step 1: Save file
                 status_text.text("💾 Saving file...")
                 progress_bar.progress(10)
                 
@@ -316,14 +317,12 @@ if option == "📁 Upload Audio File":
                     tmpfile.write(uploaded_file.read())
                     tmp_path = tmpfile.name
                 
-                # Step 2: Transcribe
                 status_text.text("🎤 Transcribing audio...")
                 progress_bar.progress(30)
                 time.sleep(0.5)
                 
                 text = transcribe_audio_file(tmp_path)
                 
-                # Step 3: Process
                 if text:
                     status_text.text("🧠 Processing text...")
                     progress_bar.progress(60)
@@ -332,21 +331,17 @@ if option == "📁 Upload Audio File":
                     words = process_text(text)
                     text_clean = " ".join(words)
                     
-                    # Step 4: Display results
                     status_text.text("✨ Generating results...")
                     progress_bar.progress(80)
                     time.sleep(0.5)
                     
-                    # Success
                     progress_bar.progress(100)
                     status_text.text("✅ Done!")
                     
-                    # Show results
                     st.balloons()
                     st.success(f"✅ *Recognized:* {text}")
                     st.write(f"*Processed Words:* {' '.join([f'<span class="word-chip">{w}</span>' for w in words])}", unsafe_allow_html=True)
                     
-                    # Features in columns
                     col1, col2 = st.columns(2)
                     
                     with col1:
@@ -367,7 +362,6 @@ if option == "📁 Upload Audio File":
                             st.write(f"*ISL:* {' → '.join(isl_words)}")
                             st.markdown('</div>', unsafe_allow_html=True)
                     
-                    # 3D Avatar
                     if show_avatar and words:
                         st.markdown('<div class="feature-box">', unsafe_allow_html=True)
                         st.markdown("#### 🖐️ 3D Avatar")
@@ -379,7 +373,6 @@ if option == "📁 Upload Audio File":
                                 st.write(f"*{word}* → {fingerspell_word(word)}")
                         st.markdown('</div>', unsafe_allow_html=True)
                     
-                    # Video Playback
                     st.markdown('<div class="feature-box">', unsafe_allow_html=True)
                     st.markdown("#### 🎬 Sign Videos")
                     videos = map_text_to_signs(words)
@@ -393,7 +386,6 @@ if option == "📁 Upload Audio File":
                             st.write(f"*{word}* → {fingerspell_word(word)}")
                     st.markdown('</div>', unsafe_allow_html=True)
                     
-                    # Download button
                     st.download_button(
                         label="📥 Download Result",
                         data=text,
@@ -411,7 +403,6 @@ if option == "📁 Upload Audio File":
                 st.error(f"❌ Error: {str(e)}")
             
             finally:
-                # Clean up
                 try:
                     os.unlink(tmp_path)
                 except:
@@ -419,7 +410,6 @@ if option == "📁 Upload Audio File":
         
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ========== MICROPHONE ==========
 else:
     st.markdown('<div class="card fade-in">', unsafe_allow_html=True)
     st.markdown("### 🎤 Record from Microphone")
@@ -433,7 +423,6 @@ else:
                 words = process_text(text)
                 st.success(f"✅ *Recognized:* {text}")
                 
-                # Show fingerspelling fallback
                 st.markdown("#### 🔤 Fingerspelling (Fallback)")
                 for word in words:
                     st.write(f"*{word}* → {fingerspell_word(word)}")
