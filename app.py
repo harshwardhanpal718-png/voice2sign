@@ -23,7 +23,7 @@ st.markdown("""
     /* Global Styles */
     .stApp {
         background: linear-gradient(135deg, #1a0b2e, #3d1f6e, #6c3cb0);
-        color: #ffffff;
+        color: #ffffff !important;
     }
     
     /* Main Title */
@@ -46,9 +46,10 @@ st.markdown("""
     
     .sub-title {
         text-align: center;
-        color: rgba(255,255,255,0.7);
+        color: #ffffff !important;
         font-size: 1.2rem;
         margin-bottom: 30px;
+        opacity: 0.8;
     }
     
     /* Cards */
@@ -62,6 +63,7 @@ st.markdown("""
         border: 1px solid rgba(255,255,255,0.1);
         box-shadow: 0 8px 32px rgba(0,0,0,0.3);
         transition: all 0.3s ease;
+        color: #ffffff !important;
     }
     
     .card:hover {
@@ -70,10 +72,15 @@ st.markdown("""
         border-color: rgba(157, 78, 221, 0.4);
     }
     
+    /* All Text Inside Cards */
+    .card * {
+        color: #ffffff !important;
+    }
+    
     /* Buttons */
     .stButton > button {
         background: linear-gradient(90deg, #9d4edd, #7b2cbf);
-        color: #ffffff;
+        color: #ffffff !important;
         font-weight: 700;
         border-radius: 50px;
         padding: 12px 35px;
@@ -88,6 +95,7 @@ st.markdown("""
         transform: scale(1.05);
         box-shadow: 0 8px 30px rgba(157, 78, 221, 0.5);
         background: linear-gradient(90deg, #7b2cbf, #9d4edd);
+        color: #ffffff !important;
     }
     
     .stButton > button:active {
@@ -102,6 +110,7 @@ st.markdown("""
         text-align: center;
         transition: all 0.3s ease;
         background: rgba(255,255,255,0.02);
+        color: #ffffff !important;
     }
     
     .upload-container:hover {
@@ -115,26 +124,43 @@ st.markdown("""
         border-left: 5px solid;
         backdrop-filter: blur(10px);
         background: rgba(255,255,255,0.05);
+        color: #ffffff !important;
+    }
+    
+    .stAlert * {
+        color: #ffffff !important;
     }
     
     .stSuccess {
         border-left-color: #9d4edd;
-        color: #e0aaff;
+    }
+    
+    .stSuccess * {
+        color: #d4b8ff !important;
     }
     
     .stError {
         border-left-color: #ff4757;
-        color: #ff6b81;
+    }
+    
+    .stError * {
+        color: #ff6b81 !important;
     }
     
     .stWarning {
         border-left-color: #ffd200;
-        color: #ffd200;
+    }
+    
+    .stWarning * {
+        color: #ffd200 !important;
     }
     
     .stInfo {
         border-left-color: #7b2cbf;
-        color: #c77dff;
+    }
+    
+    .stInfo * {
+        color: #c77dff !important;
     }
     
     /* Sidebar */
@@ -143,24 +169,29 @@ st.markdown("""
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-right: 1px solid rgba(157, 78, 221, 0.2);
+        color: #ffffff !important;
+    }
+    
+    .css-1d391kg * {
+        color: #ffffff !important;
     }
     
     .sidebar-title {
         font-size: 1.5rem;
         font-weight: 700;
-        color: #e0aaff;
+        color: #e0aaff !important;
         margin-bottom: 20px;
     }
     
     /* Checkboxes */
     .stCheckbox > label {
-        color: rgba(255,255,255,0.9);
+        color: #ffffff !important;
         font-weight: 500;
     }
     
     /* Radio buttons */
     .stRadio > label {
-        color: rgba(255,255,255,0.9);
+        color: #ffffff !important;
         font-weight: 500;
     }
     
@@ -174,20 +205,20 @@ st.markdown("""
     .footer {
         text-align: center;
         padding: 30px;
-        color: rgba(255,255,255,0.3);
+        color: rgba(255,255,255,0.5) !important;
         font-size: 0.9rem;
         border-top: 1px solid rgba(157, 78, 221, 0.1);
         margin-top: 40px;
     }
     
     .footer a {
-        color: #c77dff;
+        color: #c77dff !important;
         text-decoration: none;
     }
     
     .footer a:hover {
         text-decoration: underline;
-        color: #e0aaff;
+        color: #e0aaff !important;
     }
     
     /* Feature boxes */
@@ -197,10 +228,15 @@ st.markdown("""
         padding: 20px;
         margin: 10px 0;
         border: 1px solid rgba(157, 78, 221, 0.1);
+        color: #ffffff !important;
+    }
+    
+    .feature-box * {
+        color: #ffffff !important;
     }
     
     .feature-box h4 {
-        color: #c77dff;
+        color: #c77dff !important;
         margin-bottom: 15px;
     }
     
@@ -208,12 +244,25 @@ st.markdown("""
     .word-chip {
         display: inline-block;
         background: rgba(157, 78, 221, 0.2);
-        color: #e0aaff;
+        color: #e0aaff !important;
         padding: 5px 15px;
         border-radius: 20px;
         margin: 3px;
         font-size: 0.9rem;
         border: 1px solid rgba(157, 78, 221, 0.2);
+    }
+    
+    /* Metrics (File info) */
+    .stMetric {
+        color: #ffffff !important;
+    }
+    
+    .stMetric * {
+        color: #ffffff !important;
+    }
+    
+    .stMetric label {
+        color: #c77dff !important;
     }
     
     /* Animations */
