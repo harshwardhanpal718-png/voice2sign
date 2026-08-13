@@ -47,62 +47,73 @@ if option == "📁 Upload Audio File":
     uploaded_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "m4a"])
     
     if uploaded_file is not None:
-        with st.spinner("Processing..."):
-            # Save uploaded file
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmpfile:
-                tmpfile.write(uploaded_file.read())
-                tmp_path = tmpfile.name
-            
-            # Transcribe
-            text = transcribe_audio_file(tmp_path)
-            
-            if text:
-                words = process_text(text)
-                text_clean = " ".join(words)
+        st.success(f"✅ File uploaded: {uploaded_file.name}")
+        st.write(f"📊 File size: {uploaded_file.size} bytes")
+        
+        # 🔥 Process Button — SAHI: Yeh 'if uploaded_file' ke ANDAR hai
+        if st.button("🚀 Process Audio"):
+            with st.spinner("Processing..."):
+                # Save uploaded file temporarily
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmpfile:
+                    tmpfile.write(uploaded_file.read())
+                    tmp_path = tmpfile.name
                 
-                st.success(f"✅ Recognized: *{text}*")
-                st.write(f"📝 Processed Words: {', '.join(words)}")
+                # Transcribe
+                text = transcribe_audio_file(tmp_path)
                 
-                # ==================== NEW FEATURES ====================
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    if show_fingerspell and words:
-                        st.subheader("🔤 Fingerspelling")
-                        for word in words:
-                            st.write(f"*{word}* → {fingerspell_word(word)}")
-                
-                with col2:
-                    if show_isl_style and words:
-                        st.subheader("🔄 ISL Style (OSV)")
-                        isl_words = words[::-1]
-                        isl_emojis = [get_sign_emoji(w) for w in isl_words]
-                        st.write(" → ".join(isl_emojis))
-                        st.write(f"*ISL:* {' → '.join(isl_words)}")
-                
-                # ==================== 3D AVATAR ====================
-                if show_avatar and words:
-                    st.subheader("🖐️ 3D Avatar")
-                    if AVATAR_AVAILABLE:
-                        generate_avatar_sign(text_clean)
+                if text:
+                    words = process_text(text)
+                    text_clean = " ".join(words)
+                    
+                    st.success(f"✅ Recognized: *{text}*")
+                    st.write(f"📝 Processed Words: {', '.join(words)}")
+                    
+                    # ==================== NEW FEATURES ====================
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        if show_fingerspell and words:
+                            st.subheader("🔤 Fingerspelling")
+                            for word in words:
+                                st.write(f"*{word}* → {fingerspell_word(word)}")
+                    
+                    with col2:
+                        if show_isl_style and words:
+                            st.subheader("🔄 ISL Style (OSV)")
+                            isl_words = words[::-1]
+                            isl_emojis = [get_sign_emoji(w) for w in isl_words]
+                            st.write(" → ".join(isl_emojis))
+                            st.write(f"*ISL:* {' → '.join(isl_words)}")
+                    
+                    # ==================== 3D AVATAR ====================
+                    if show_avatar and words:
+                        st.subheader("🖐️ 3D Avatar")
+                        if AVATAR_AVAILABLE:
+                            generate_avatar_sign(text_clean)
+                        else:
+                            st.info("💡 3D Avatar is only available locally. Showing fingerspelling instead.")
+                            for word in words:
+                                st.write(f"*{word}* → {fingerspell_word(word)}")
+                    
+                    # ==================== VIDEO PLAYBACK ====================
+                    st.subheader("🎬 Sign Videos")
+                    videos = map_text_to_signs(words)
+                    if videos:
+                        st.write(f"🎯 Found {len(videos)} sign(s)")
+                        play_videos(videos)
                     else:
-                        st.info("💡 3D Avatar is only available locally. Showing fingerspelling instead.")
+                        st.warning("⚠️ No signs found for the given text.")
+                        st.info("💡 Using fingerspelling for all words:")
                         for word in words:
                             st.write(f"*{word}* → {fingerspell_word(word)}")
-                
-                # ==================== VIDEO PLAYBACK ====================
-                st.subheader("🎬 Sign Videos")
-                videos = map_text_to_signs(words)
-                if videos:
-                    st.write(f"🎯 Found {len(videos)} sign(s)")
-                    play_videos(videos)
                 else:
-                    st.warning("⚠️ No signs found for the given text.")
-                    st.info("💡 Using fingerspelling for all words:")
-                    for word in words:
-                        st.write(f"*{word}* → {fingerspell_word(word)}")
-            
-            os.unlink(tmp_path)
+                    st.error("❌ Could not recognize speech. Please try again.")
+                
+                # Clean up temp file
+                try:
+                    os.unlink(tmp_path)
+                except:
+                    pass
 
 # ==================== MICROPHONE ====================
 else:
@@ -161,20 +172,3 @@ else:
 # ==================== FOOTER ====================
 st.markdown("---")
 st.caption("Made with ❤️ using Streamlit")
-if uploaded_file is not None:
-    # Show file info
-    st.success(f"✅ File uploaded: {uploaded_file.name}")
-    st.write(f"📊 File size: {uploaded_file.size} bytes")
-    
-    # 🔥 Naya "Process" Button
-    if st.button("🚀 Process Audio"):
-        with st.spinner("Processing..."):
-            # Save uploaded file temporarily
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmpfile:
-                tmpfile.write(uploaded_file.read())
-                tmp_path = tmpfile.name
-            
-            # Transcribe
-            text = transcribe_audio_file(tmp_path)
-            
-   
